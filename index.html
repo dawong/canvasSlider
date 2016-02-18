@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="myCanvas" width="600" height="600" style="border:1px solid #d3d3d3;"></canvas>
+
+<script>
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+var dimension = 600;
+var sectionLength = dimension/3;
+
+
+for (var i=1; i<=2; i++) {
+  //draw vertical lines
+  ctx.moveTo(sectionLength*i, 0);
+  ctx.lineTo(sectionLength*i, 600);
+  ctx.stroke();
+  
+  //draw horizontal lines
+  ctx.moveTo(0, sectionLength*i);
+  ctx.lineTo(600, sectionLength*i);
+  ctx.stroke();
+}
+
+c.addEventListener('click', function(event) {
+  var x = event.pageX - c.offsetLeft;
+  var y = event.pageY - c.offsetTop;
+  console.log("Clicked X Coord: " + x);
+  console.log("Clicked Y Coord: " + y);
+}, false);
+</script>
+
+</body>
+</html>
