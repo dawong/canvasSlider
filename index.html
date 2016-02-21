@@ -6,28 +6,59 @@
 
 <script>
 var c = document.getElementById("myCanvas");
-var ctx = c.getContext("2d");
+var context = c.getContext("2d");
 var dimension = 600;
 var sectionLength = dimension/3;
 
-
-for (var i=1; i<=2; i++) {
-  //draw vertical lines
-  ctx.moveTo(sectionLength*i, 0);
-  ctx.lineTo(sectionLength*i, 600);
-  ctx.stroke();
+var img = new Image();
+img.addEventListener("load", function() {
+  context.drawImage(img,0,0); 
   
-  //draw horizontal lines
-  ctx.moveTo(0, sectionLength*i);
-  ctx.lineTo(600, sectionLength*i);
-  ctx.stroke();
-}
+  for (var i=1; i<=2; i++) {
+    //draw vertical lines
+    context.moveTo(sectionLength*i, 0);
+    context.lineTo(sectionLength*i, 600);
+    context.stroke();
+    
+    //draw horizontal lines
+    context.moveTo(0, sectionLength*i);
+    context.lineTo(600, sectionLength*i);
+    context.stroke();
+  }
+}, false);
+img.src = "album.jpg";
 
 c.addEventListener('click', function(event) {
   var x = event.pageX - c.offsetLeft;
   var y = event.pageY - c.offsetTop;
+  console.log("-----CLICK-----");
   console.log("Clicked X Coord: " + x);
   console.log("Clicked Y Coord: " + y);
+  if (y < 200) {
+    if (x < 200) {
+      console.log("SECTION 1");
+    } else if (x > 200 && x < 400) {
+      console.log("SECTION 2");
+    } else if (x > 400) {
+      console.log("SECTION 3");
+    }
+  } else if (y > 200 && y < 400) {
+    if (x < 200) {
+      console.log("SECTION 4");
+    } else if (x > 200 && x < 400) {
+      console.log("SECTION 5");
+    } else if (x > 400) {
+      console.log("SECTION 6");
+    }
+  } else if (y > 400) {
+    if (x < 200) {
+      console.log("SECTION 7");
+    } else if (x > 200 && x < 400) {
+      console.log("SECTION 8");
+    } else if (x > 400) {
+      console.log("SECTION 9");
+    }
+  }
 }, false);
 </script>
 
