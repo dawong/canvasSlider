@@ -12,7 +12,11 @@ var sectionLength = dimension/3;
 
 var img = new Image();
 img.addEventListener("load", function() {
-  context.drawImage(img,0,0); 
+  //context.drawImage(img,0,0); 
+  
+  context.drawImage(img, 0, 0, 600, 400, 0, 0, 600, 400);
+  
+  context.drawImage(img, 0, 400, 400, 200, 0, 400, 400, 200);
   
   for (var i=1; i<=2; i++) {
     //draw vertical lines
