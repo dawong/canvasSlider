@@ -41,26 +41,35 @@ c.addEventListener('click', function(event) {
   if (y < 200) {
     if (x < 200) {
       console.log("SECTION 1");
+      context.clearRect(0,0,200,200);
     } else if (x > 200 && x < 400) {
       console.log("SECTION 2");
+      context.clearRect(200,0,200,200);
     } else if (x > 400) {
       console.log("SECTION 3");
+      context.clearRect(400,0,200,200);
     }
   } else if (y > 200 && y < 400) {
     if (x < 200) {
       console.log("SECTION 4");
+      context.clearRect(0,200,200,200);
     } else if (x > 200 && x < 400) {
       console.log("SECTION 5");
+      context.clearRect(200,200,200,200);
     } else if (x > 400) {
       console.log("SECTION 6");
+      context.clearRect(400,200,200,200);
     }
   } else if (y > 400) {
     if (x < 200) {
       console.log("SECTION 7");
+      context.clearRect(0,400,200,200);
     } else if (x > 200 && x < 400) {
       console.log("SECTION 8");
+      context.clearRect(200,400,200,200);
     } else if (x > 400) {
       console.log("SECTION 9");
+      context.clearRect(400,400,200,200);
     }
   }
 }, false);
