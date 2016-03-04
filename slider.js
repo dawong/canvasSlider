@@ -4,6 +4,17 @@ var dimension = 600;
 var sectionLength = dimension/3;
 var img = new Image();
 var numArray = [1,2,3,4,5,6,7,8,9];
+var numArraytest = [
+  {pieceNum: 1, locationNum: 0},
+  {pieceNum: 2, locationNum: 1},
+  {pieceNum: 3, locationNum: 2},
+  {pieceNum: 4, locationNum: 3},
+  {pieceNum: 5, locationNum: 4},
+  {pieceNum: 6, locationNum: 5},
+  {pieceNum: 7, locationNum: 6},
+  {pieceNum: 8, locationNum: 7},
+  {pieceNum: 9, locationNum: 8}
+];
 
 img.addEventListener("load", function() {
   drawBoard();
@@ -51,17 +62,30 @@ c.addEventListener('click', function(event) {
 }, false);
 
 function drawBoard() {
-  shuffle(numArray);
+  context.clearRect(0,0,600,600);
+  //shuffle(numArray);
+
+  shuffle(numArraytest);
 
   //draw images
   for (var j=0; j<3; j++) {
     for (var k=0; k<3; k++) {
-      var destX = j * sectionLength;
-      var destY = k * sectionLength;
       var sectionNum = j*3 + k;
-      var srcX = getImgX(numArray[sectionNum], sectionLength);
-      var srcY = getImgY(numArray[sectionNum], sectionLength);
-      context.drawImage(img, destX, destY, 200, 200, srcX, srcY, 200, 200);
+      var destX = k * sectionLength;
+      var destY = j * sectionLength;
+      var srcX = getImgX(numArraytest[sectionNum].pieceNum, sectionLength);
+      var srcY = getImgY(numArraytest[sectionNum].pieceNum, sectionLength);
+
+      console.log('-------');
+      console.log(sectionNum);
+      console.log(destX);
+      console.log(destY);
+      console.log("piece number is: " + numArraytest[sectionNum].pieceNum);
+      console.log("location number is: " + numArraytest[sectionNum].locationNum);
+      console.log(srcX);
+      console.log(srcY);
+
+      context.drawImage(img, srcX, srcY, 200, 200, destX, destY, 200, 200);
     }
   }
 
@@ -86,10 +110,14 @@ function getImgY(num, length) {
 }
 function shuffle(arr) {
   var j, x, i;
-  for (var i=arr.length-1; i>=0; i--) {
+  for (var i=0; i<arr.length; i++) {
     j = Math.floor(Math.random() * i);
     x = arr[i];
+    
     arr[i] = arr[j];
+    arr[i].locationNum = i;
+
     arr[j] = x;
+    arr[j].locationNum = j;
   }
 }
